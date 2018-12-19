@@ -12,7 +12,7 @@ def correct_transfer(string, length):
             scorer += 1
         else:
             lines += string[num]
-    print(lines)
+    user(lines)
 
 def int_clear():
     '''Function open and clear file.'''
@@ -25,7 +25,7 @@ def int_clear():
             if letter in a + b:
                 text_clean += letter
         text = text_clean.replace("  ", " ").split()
-        return(text)
+        return text
 
 def stop(text):
     '''Function find stop-words.'''
@@ -33,7 +33,7 @@ def stop(text):
     for word in text:
         if word.endswith(".") or word.endswith("!") or word.endswith("?"):
             list_stop_words.append(word)
-    return(list_stop_words)
+    return list_stop_words
 
 def start(text,list_stop_words):
     '''Function find start-words.'''
@@ -42,7 +42,7 @@ def start(text,list_stop_words):
     for letters in text:
         if letters[0] in a and text[text.index(letters)-1] in list_stop_words:
             list_start_words.append(letters)
-    return(list_start_words)
+    return list_start_words
 
 def sentences(text,list_stop_words,list_start_words):
     '''Function compose the sentences.'''
@@ -86,7 +86,20 @@ def sentences(text,list_stop_words,list_start_words):
             if add_word in list_stop_words:
                 break
         last_text += sent + " "
-    correct_transfer(last_text, 100)
+    correct_transfer(last_text, 90)
+
+def user(lines):
+    '''The user input number of sentences.'''
+    num = int(input('Введите количество предложений: '))
+    x = 0
+    for i in lines:
+        if i in '!.?':
+            print(i, end='')
+            x += 1
+        else:
+            print(i, end='')
+        if x == num:
+            break
 
 def main():
     clear = int_clear()
